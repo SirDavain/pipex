@@ -14,13 +14,13 @@ libft:
 	@make -C libft/
 
 $(NAME): $(OBJ)
-	@make -c libft/
+	@make -C libft/
 	$(CC) $^ -Llibft -lft -o $(NAME)
 
 %.o: %.C
 	$(CC) $(CFLAGS) -Ilibft -c $< -o $@
 
-clean
+clean:
 	rm -f $(OBJ)
 
 fclean: clean
