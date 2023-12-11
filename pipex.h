@@ -1,13 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils1.c                                     :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/11 13:21:50 by dulrich          ###   ########.fr       */
+/*   Created: 2023/12/11 13:22:11 by dulrich           #+#    #+#             */
+/*   Updated: 2023/12/11 13:32:16 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef PIPEX_H
+# define PIPEX_H
+
+# include <stdlib.h>
+# include <stddef.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdarg.h>
+# include <stdint.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+#endif
