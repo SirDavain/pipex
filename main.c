@@ -6,47 +6,23 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:46 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/11 13:42:50 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/11 16:50:30 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	int	fd[2];
-	int	pid1;
-	int	pid2;
-
-	if (pipe(fd) == -1)
-		return (1);
-	pid1 = fork();
-	if (pid1 < 0)
-		return (2);
-	if (pid1 == 0)
-	{
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		execlp("ping", "ping", "-c", "5", "google.com", NULL);
-	}
-	pid2 = fork();
-	if (pid2 < 0)
-		return (3);
-	if (pid2 == 0)
-	{
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		execlp("grep", "grep", "rtt", NULL);
-	}
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-
-	/* if (argc != 5)
-		return ("ERROR"); */
 	
+	if (argc != 5)
+		pipe_error("Not the right amount of arguments.");
+	open_pipe(&fd);
+	
+	new_fork_process(argv[2], &fd, envp);
+	
+	close_fd again
+	waitpid(children)
 	return (0);
 }

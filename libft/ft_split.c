@@ -6,45 +6,11 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 12:26:31 by dulrich           #+#    #+#             */
-/*   Updated: 2023/09/19 11:28:20 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/11 16:02:12 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }
-
-// char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	char	*substr;
-// 	size_t	i;
-
-// 	if (!s)
-// 		return (NULL);
-// 	if (start >= ft_strlen(s))
-// 		len = 0;
-// 	else if (start + len > ft_strlen(s))
-// 		len = ft_strlen(s) - start;
-// 	substr = (char *)malloc((len + 1) * sizeof(char));
-// 	if (!substr)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		substr[i] = s[start + i];
-// 		i++;
-// 	}
-// 	substr[i] = '\0';
-// 	return (substr);
-// }
 
 static int	ft_count(const char *s, int c)
 {
