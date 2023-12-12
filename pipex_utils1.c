@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/11 23:36:22 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:05:53 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,90 @@ void	pipe_error(char *str)
 	exit(1);
 }
 
-void	close_fd(int fd1, int fd2)
+void	close_pipes(t_pipex *pipex)
 {
-	close(fd1);
-	close(fd2);
+	close(pipex->pipe[0]);
+	close(pipex->pipe[1]);
 }
 
-void	open_pipe(int (*p)[2])
+char	*get_cmd(char **paths, char *cmd)
+{
+	char	*tmp;
+	char	*command;
+
+	while (*paths)
+	{
+		tmp = ft_strjoin(*paths, '/');
+		command = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(command, F_OK) == 0)
+			return(command);
+		free(command);
+		paths++;
+	}
+	return (NULL);
+}
+
+void	free_parent(t_pipex *pipex)
+{
+	int	i;
+
+	close(pipex->infile);
+	close(pipex->outfile);
+	i = 0;
+	while (pipex->paths[i])
+	{
+		free(pipex->paths[i]);
+		i++;
+	}
+	free(pipex->paths);
+}
+
+void	free_child(t_pipex *pipex)
+{
+	int	i;
+
+	i = 0;
+	while (pipex->cmd_args[i])
+	{
+		free(pipex->cmd_args[i]);
+		i++;
+	}
+	free(pipex->cmd_args);
+	free(pipex->cmd);
+}
+
+void	start_child1(t_pipex pipex, char **argv, char **envp)
+{
+	dup2(pipex.pipe[1], STDOUT_FILENO);
+	close(pipex.pipe[0]);
+	dup2(pipex.infile, STDIN_FILENO);
+	pipex.cmd_args = ft_split(argv[2], ' ');
+	pipex.cmd = get_cmd(pipex.paths, pipex.cmd_args[0]);
+	if (!pipex.cmd)
+	{
+		free_child(&pipex);
+		pipe_error("Error while getting commands.");
+	}
+	execve(pipex.cmd, pipex.cmd_args, envp);
+}
+
+void	start_child2(t_pipex pipex, char **argv, char **envp)
+{
+	dup2(pipex.pipe[0], STDIN_FILENO);
+	close(pipex.pipe[1]);
+	dup2(pipex.outfile, STDOUT_FILENO);
+	pipex.cmd_args = ft_split(argv[3], ' ');
+	pipex.cmd = get_cmd(pipex.paths, pipex.cmd_args[0]);
+	if (!pipex.cmd)
+	{
+		free_child(&pipex);
+		pipe_error("Error while getting commands.");
+	}
+	execve(pipex.cmd, pipex.cmd_args, envp);
+}
+
+/* void	open_pipe(int (*p)[2])
 {
 	close_fd((*p)[0], (*p)[1]);
 	pipe((*p));
@@ -68,12 +145,4 @@ void	exec_pipe(char *bin, int fd_in, int fd_out, char **env)
 	dup2(fd_out, STDOUT_FILENO);
 	paths = get_path(env);
 	args = ft_split(bin, ' ');
-
-}
-
-char	*get_access(char *cmd, char **paths)
-{
-	char	*path;
-
-	
-}
+} */

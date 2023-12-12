@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:22:11 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/12 00:06:47 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/12 15:37:40 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct	s_pipex
 	int		infile;
 	int		outfile;
 	int		pipe[2];
-	char	**cmd_paths;
+	//char	**cmd_paths;
 	char	**cmd_args;
-	char	*paths;
+	char	**paths;
 	char	*cmd;
 }				t_pipex;
 
