@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/13 13:05:10 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:37:37 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 	if (!pipex.cmd)
 	{
 		free_child(&pipex);
-		pipe_error("Error while getting commands.");
+		pipe_error("Error while getting commands.\n");
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }
@@ -69,7 +69,7 @@ void	start_child2(t_pipex pipex, char **argv, char **envp)
 	if (!pipex.cmd)
 	{
 		free_child(&pipex);
-		pipe_error("Error while getting commands.");
+		pipe_error("Error while getting commands.\n");
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }

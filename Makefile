@@ -17,7 +17,7 @@ $(NAME): $(OBJ)
 	@make -C libft/
 	$(CC) $^ -Llibft -lft -o $(NAME)
 
-%.o: %.C
+%.o: %.c
 	$(CC) $(CFLAGS) -Ilibft -c $< -o $@
 
 clean:
