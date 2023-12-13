@@ -1,6 +1,6 @@
 NAME = pipex
 
-SRC = main.c pipex_utils1.c
+SRC = pipex.c pipex_utils.c free_funcs.c
 
 OBJ := $(SRC:%.c=%.o)
 

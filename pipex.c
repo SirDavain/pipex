@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:46 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/13 09:27:02 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:17:25 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	pipe_error(char *str)
+{
+	ft_putstr_fd(str, STDERR_FILENO);
+	exit(1);
+}
+
+void	close_pipes(t_pipex *pipex)
+{
+	close(pipex->pipe[0]);
+	close(pipex->pipe[1]);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
-	
+
 	if (argc != 5)
 		pipe_error("Not the right amount of arguments.");
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
 		pipe_error("Error with the infile.");
-	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, "rw-r--r--");
+	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, \
+	"rw-r--r--");
 	if (pipex.outfile < 0)
 		pipe_error("Error with the outfile.");
 	if (pipe(pipex.pipe) < 0)

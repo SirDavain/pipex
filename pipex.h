@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:22:11 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/13 09:25:32 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:08:09 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/wait.h>
 # include <sys/uio.h>
 
-typedef struct	s_pipex
+typedef struct s_pipex
 {
 	pid_t	pid1;
 	pid_t	pid2;
@@ -39,7 +39,7 @@ typedef struct	s_pipex
 }				t_pipex;
 
 // Main:
-int	main(int argc, char **argv, char **envp);
+int		main(int argc, char **argv, char **envp);
 
 // Utilities:
 void	pipe_error(char *str);
