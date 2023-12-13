@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:22:11 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/12 15:37:40 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/13 09:25:32 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,19 @@ typedef struct	s_pipex
 	char	*cmd;
 }				t_pipex;
 
-// Functions:
+// Main:
 int	main(int argc, char **argv, char **envp);
 
-// Utilities 1:
+// Utilities:
 void	pipe_error(char *str);
 char	**get_path(char **env);
-void	open_pipe(int (*p)[2]);
-void	close_fd(int fd1, int fd2);
-void	new_fork_process(char *cmd, int (*p1)[2], int (*p2)[2], char **env);
+void	close_pipes(t_pipex *pipex);
+char	*get_cmd(char **paths, char *cmd);
+void	start_child1(t_pipex pipex, char **argv, char **envp);
+void	start_child2(t_pipex pipex, char **argv, char **envp);
+
+// Free
+void	free_parent(t_pipex *pipex);
+void	free_child(t_pipex *pipex);
 
 #endif

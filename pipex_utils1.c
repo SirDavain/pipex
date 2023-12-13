@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/12 16:05:53 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/12/13 09:28:50 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_cmd(char **paths, char *cmd)
 
 	while (*paths)
 	{
-		tmp = ft_strjoin(*paths, '/');
+		tmp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
 		if (access(command, F_OK) == 0)
@@ -114,35 +114,3 @@ void	start_child2(t_pipex pipex, char **argv, char **envp)
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }
-
-/* void	open_pipe(int (*p)[2])
-{
-	close_fd((*p)[0], (*p)[1]);
-	pipe((*p));
-}
-
-void	new_fork_process(char *cmd, int (*p1)[2], int (*p2)[2], char **env)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid < 0)
-		pipe_error("Error while forking.");
-	if (pid == 0)
-	{
-		close_fd((*p1)[1], (*p2)[0]);
-		exec_pipe(cmd, (*p1)[0], (*p2)[1], env);
-	}
-	open_pipe(p1);
-}
-
-void	exec_pipe(char *bin, int fd_in, int fd_out, char **env)
-{
-	char	**paths;
-	char	**args;
-
-	dup2(fd_in, STDIN_FILENO);
-	dup2(fd_out, STDOUT_FILENO);
-	paths = get_path(env);
-	args = ft_split(bin, ' ');
-} */
