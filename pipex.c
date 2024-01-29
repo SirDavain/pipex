@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:46 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/13 13:37:11 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:17:14 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	main(int argc, char **argv, char **envp)
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
 		pipe_error("Error with the infile.");
-	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, \
-	"rw-r--r--");
+	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (pipex.outfile < 0)
 		pipe_error("Error with the outfile.\n");
 	if (pipe(pipex.pipe) < 0)
