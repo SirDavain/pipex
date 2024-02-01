@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/13 13:37:37 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:50:09 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	**get_path(char **env)
 		env++;
 	}
 	paths = ft_split(*env + 5, ':');
+	if (!paths)
+		return (NULL);
 	return (paths);
 }
 
@@ -34,7 +36,11 @@ char	*get_cmd(char **paths, char *cmd)
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
+		if (!tmp)
+			return (NULL);
 		command = ft_strjoin(tmp, cmd);
+		if (!command)
+			return (NULL);
 		free(tmp);
 		if (access(command, F_OK) == 0)
 			return (command);
@@ -50,6 +56,8 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 	close(pipex.pipe[0]);
 	dup2(pipex.infile, STDIN_FILENO);
 	pipex.cmd_args = ft_split(argv[2], ' ');
+	if (!pipex.cmd_args)
+		return ;
 	pipex.cmd = get_cmd(pipex.paths, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
@@ -65,6 +73,8 @@ void	start_child2(t_pipex pipex, char **argv, char **envp)
 	close(pipex.pipe[1]);
 	dup2(pipex.outfile, STDOUT_FILENO);
 	pipex.cmd_args = ft_split(argv[3], ' ');
+	if (!pipex.cmd_args)
+		return ;
 	pipex.cmd = get_cmd(pipex.paths, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
