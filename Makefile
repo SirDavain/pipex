@@ -17,7 +17,7 @@ $(NAME): $(OBJ)
 	@make -C libft/
 	$(CC) $^ -Llibft -lft -o $(NAME)
 
-%.o: %.c
+%.o: %.c pipex.h
 	$(CC) $(CFLAGS) -Ilibft -c $< -o $@
 
 clean:
@@ -29,4 +29,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: NAME clean fclean re
+.PHONY: NAME all clean fclean re

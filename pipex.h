@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:22:11 by dulrich           #+#    #+#             */
-/*   Updated: 2023/12/13 13:08:09 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:08:08 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_pipex
 	int		infile;
 	int		outfile;
 	int		pipe[2];
-	//char	**cmd_paths;
 	char	**cmd_args;
 	char	**paths;
 	char	*cmd;
@@ -40,11 +39,11 @@ typedef struct s_pipex
 
 // Main:
 int		main(int argc, char **argv, char **envp);
+void	close_pipes(t_pipex *pipex);
+void	pipe_error(char *str);
 
 // Utilities:
-void	pipe_error(char *str);
 char	**get_path(char **env);
-void	close_pipes(t_pipex *pipex);
 char	*get_cmd(char **paths, char *cmd);
 void	start_child1(t_pipex pipex, char **argv, char **envp);
 void	start_child2(t_pipex pipex, char **argv, char **envp);
