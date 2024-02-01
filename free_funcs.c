@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:04:13 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/01 11:19:54 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/01 14:38:57 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	free_parent(t_pipex *pipex)
 
 	close(pipex->infile);
 	close(pipex->outfile);
+/* 	if (!pipex->paths)
+	{
+		free(pipex->paths);
+		return ;
+	} */
 	i = 0;
 	while (pipex->paths[i])
 	{
