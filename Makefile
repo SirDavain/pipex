@@ -4,7 +4,7 @@ SRC = pipex.c pipex_utils.c free_funcs.c
 
 OBJ := $(SRC:%.c=%.o)
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g
 

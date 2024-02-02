@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 12:26:31 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/01 10:50:04 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/02 14:29:20 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static char	*ft_get_next_substr(const char **s, char c)
 	size_t		len;
 	char		*substr;
 
+	if (!(*s) || !s)
+		return (NULL);
 	start = *s;
 	while (*start && *start == c)
 		start++;
