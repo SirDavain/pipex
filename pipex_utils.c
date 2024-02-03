@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/02 15:09:37 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/03 16:27:35 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*get_cmd(char **paths, char *cmd)
 
 void	start_child1(t_pipex pipex, char **argv, char **envp)
 {
+	int	i;
+
 	dup2(pipex.pipe[1], STDOUT_FILENO);
 	close(pipex.pipe[0]);
 	dup2(pipex.infile, STDIN_FILENO);
@@ -61,6 +63,13 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 	pipex.cmd = get_cmd(pipex.paths, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
+		i = 0;
+		while (pipex.paths[i])
+		{
+			free(pipex.paths[i]);
+			i++;
+		}
+		free(pipex.paths);
 		free_child(&pipex);
 		pipe_error("Error while getting commands.\n");
 	}
@@ -69,6 +78,8 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 
 void	start_child2(t_pipex pipex, char **argv, char **envp)
 {
+	int	i;
+
 	dup2(pipex.pipe[0], STDIN_FILENO);
 	close(pipex.pipe[1]);
 	dup2(pipex.outfile, STDOUT_FILENO);
@@ -78,6 +89,13 @@ void	start_child2(t_pipex pipex, char **argv, char **envp)
 	pipex.cmd = get_cmd(pipex.paths, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
+		i = 0;
+		while (pipex.paths[i])
+		{
+			free(pipex.paths[i]);
+			i++;
+		}
+		free(pipex.paths);
 		free_child(&pipex);
 		pipe_error("Error while getting commands.\n");
 	}
