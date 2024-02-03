@@ -6,58 +6,11 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:15:12 by dulrich           #+#    #+#             */
-/*   Updated: 2023/09/18 15:50:09 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/03 14:17:52 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }
-
-// char	*ft_strchr(const char *s, int c)
-// {
-// 	int				i;
-// 	unsigned char	uc;
-
-// 	uc = (unsigned char)c;
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (uc == s[i])
-// 			return ((char *)&s[i]);
-// 		i++;
-// 	}
-// 	if (uc == '\0')
-// 		return ((char *)&s[i]);
-// 	return (NULL);
-// }
-
-// size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-// {
-// 	size_t	i;
-// 	size_t	src_len;
-
-// 	src_len = ft_strlen(src);
-// 	i = 0;
-// 	if (size > 0)
-// 	{
-// 		while (src[i] && i < size - 1)
-// 		{
-// 			dst[i] = src[i];
-// 			i++;
-// 		}
-// 		dst[i] = '\0';
-// 	}
-// 	return (src_len);
-// }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {

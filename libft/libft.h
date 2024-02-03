@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:44:13 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/04 12:41:55 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/03 14:17:30 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ char	*read2str(char *rline);
 char	*save_remainder(char *rline);
 char	*ft_new_strjoin(char *s1, char const *s2);
 char	*ft_new_strchr(const char *s, int c);
+
 #endif
