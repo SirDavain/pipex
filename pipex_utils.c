@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/03 16:27:35 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/05 14:49:41 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 		free_child(&pipex);
 		pipe_error("Error while getting commands.\n");
 	}
+	if (pipex.infile < 0)
+		return ;
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }
 

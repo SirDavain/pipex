@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:46 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/03 16:30:28 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/05 15:49:14 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		pipe_error("Not the right amount of arguments.\n");
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
-		ft_printf("Error with the infile.");
+		ft_printf("No such file or directory: %s\n", argv[1]);
 	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (pipex.outfile < 0)
 		pipe_error("Error with the outfile.\n");
