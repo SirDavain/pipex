@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:46 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/08 13:29:34 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/08 14:07:44 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,17 @@ void	close_pipes(t_pipex *pipex)
 
 void	infile_invalid(t_pipex pipex)
 {
+	int	i;
+
 	close(pipex.pipe[1]);
+	close(pipex.infile);
+	i = 0;
+	while (pipex.paths[i])
+	{
+		free(pipex.paths[i]);
+		i++;
+	}
+	free(pipex.paths);
 	exit(1);
 }
 
