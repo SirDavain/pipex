@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:09:30 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/05 14:49:41 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:29:27 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 
 	dup2(pipex.pipe[1], STDOUT_FILENO);
 	close(pipex.pipe[0]);
+	if (pipex.infile < 0)
+		infile_invalid(pipex);
 	dup2(pipex.infile, STDIN_FILENO);
 	pipex.cmd_args = ft_split(argv[2], ' ');
 	if (!pipex.cmd_args)
@@ -73,8 +75,6 @@ void	start_child1(t_pipex pipex, char **argv, char **envp)
 		free_child(&pipex);
 		pipe_error("Error while getting commands.\n");
 	}
-	if (pipex.infile < 0)
-		return ;
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }
 

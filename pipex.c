@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:46 by dulrich           #+#    #+#             */
-/*   Updated: 2024/02/05 15:49:14 by dulrich          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:29:34 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void	close_pipes(t_pipex *pipex)
 {
 	close(pipex->pipe[0]);
 	close(pipex->pipe[1]);
+}
+
+void	infile_invalid(t_pipex pipex)
+{
+	close(pipex.pipe[1]);
+	exit(1);
 }
 
 int	main(int argc, char **argv, char **envp)
